@@ -65,14 +65,11 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav1">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="new.html">New Recipe</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Pricing</a>
+              <a class="nav-link" href="new.html">New Recipe<span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <form class="form-inline waves-effect waves-light">
@@ -96,7 +93,53 @@
       <!--/.Page heading-->
       <hr>
 
-
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Recipe Info</legend>
+          <div class="form-group">
+            <label for="inputAuthor" class="col-md-2 control-label">Author</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="inputAuthor" placeholder="Author">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTitle" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription" class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" id="inputDescription" placeholder="Description">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputImage" class="col-md-2 control-label">Image URL</label>
+            <div class="col-md-10">
+              <input type="url" class="form-control" id="inputImage" placeholder="Image URL">
+            </div>
+          </div>
+          <legend>Recipe Ingredients</legend>
+          <div class="recipe-ingredients form-group">
+          </div>
+          <div class="col-md-12">
+            <button type="button" class="add-recipe-ingredient-button btn btn-link">Add Ingredient</button>
+          </div>
+          <legend>Recipe Steps</legend>
+          <div class="recipe-steps form-group">
+          </div>
+          <div class="col-md-12">
+            <button type="button" class="add-recipe-step-button btn btn-link">Add Step</button>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+              <button type="button" class="reset-button btn btn-default">Reset</button>
+              <button type="button" class="submit-button btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
 
     </div>
     <!--/.Main layout-->
