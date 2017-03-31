@@ -12,7 +12,7 @@ $(function() {
           <input type="text" class="recipe-ingredient-quantity form-control" id="recipe-ingredient-quantity-${ingredientCount.toString()}" placeholder="Quantity">
         </div>
         <label for="recipe-ingredient-name" class="col-lg-1 col-md-1 col-sm-1 col-xs-1">Ingredient: </label>
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <input type="text" class="recipe-ingredient-name form-control" id="recipe-ingredient-name-${ingredientCount.toString()}" placeholder="Ingredient">
         </div>
       </div>
@@ -23,9 +23,11 @@ $(function() {
     event.preventDefault();
     ++stepCount;
     $('.recipe-steps').append(`
-      <label for="recipe-step" class="col-md-2 control-label">Step ${stepCount.toString()}: </label>
-      <div class="col-md-10">
-        <textarea class="recipe-step form-control" rows="2" id="recipeStep-${stepCount.toString()}"></textarea>
+      <div class="row">
+        <label for="recipe-step" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-label">Step ${stepCount.toString()}: </label>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <textarea class="recipe-step form-control" rows="2" id="recipeStep-${stepCount.toString()}"></textarea>
+        </div>
       </div>
       `)
   })

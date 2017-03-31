@@ -85,110 +85,15 @@
     <!--Main layout-->
     <div class="container">
       <!--Page heading-->
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <h1 class="name-field h1-responsive"></h1>
-        </div>
-      </div>
-      <div class="row recipe-info-pane">
-        <div class="bio-column col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <table class="table table-striped table-hover recipe-bio-table">
-            <tbody class="recipe-bio-table-body">
-              <tr>
-                <td>Description</td>
-                <td class="description-field"></td>
-              </tr>
-              <tr>
-                <td>Average Rating</td>
-                <td class="rating-field"></td>
-              </tr>
-              <tr>
-                <td>Author</td>
-                <td class="author-field"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="pic-column col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <img src="" class="food-pic img-fluid">
-        </div>
-        <hr>
-      </div>
-      <br>
-      <div class="ingredient-step row">
-        <div class="ingredient-section col-md-6">
-          <h3 class="h3-responsive">Ingredient List</h3>
-          <ul class="ingredient-list">
-          </ul>
-        </div>
-        <div class="step-section col-md-6">
-          <h3 class="h3-responsive">Recipe Steps</h3>
-          <ul class="step-list">
-          </ul>
-        </div>
-      </div>
-      <div>
-        <a href="" class="edit-button btn btn-brown" id="edit-button-">Edit Recipe</a>
-        <button type="button" class="delete-button btn btn-danger">Delete Recipe</button>
-      </div>
-      <div class="row review-form-pane">
-        <div class="col-md-6">
-          <form class="form-horizontal">
-            <fieldset>
-              <legend>Submit a Review</legend>
-              <div class="form-group">
-                <label for="inputAuthor" class="col-md-2 control-label">Author</label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" id="inputAuthor" placeholder="Author">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputRating" class="col-md-2 control-label">Rating</label>
-                <div class="col-md-10">
-                  <select class="inputRating" name="inputRating">
-                    <option value="" disabled selected>Select your Rating</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                    <option value="0">0</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputComment" class="col-md-2 control-label">Comment</label>
-                <div class="col-md-10">
-                  <textarea rows="3" class="form-control" id="inputComment" placeholder="Comment"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                  <button type="button" class="review-submit-button submit-button btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <table class="review-table table table-striped table-hover table-responsive">
-            <thead>
-              <th>Author</th>
-              <th>Rating</th>
-              <th>Comment</th>
-              <th></th>
-            </thead>
-            <tbody class="review-section">
-            </tbody>
-          </table>
+      <div class="row recipe-list-pane">
+        <div class="col-md-12">
+          <h1 class="h1-responsive ingredient-name">
+            <small class="text-muted">associated recipes</small>
+          </h1>
         </div>
       </div>
       <!--/.Page heading-->
       <hr>
-
-
-
-
     </div>
     <!--/.Main layout-->
   </main>
@@ -249,8 +154,9 @@
   <script type="text/javascript" src="./scripts/tether.min.js"></script>
   <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
   <script type="text/javascript" src="./scripts/mdb.min.js"></script>
-  <script type="text/javascript" src="./scripts/recipe.js"></script>
+  <script type="text/javascript" src="./scripts/ingredient.js"></script>
 
+  </script>
 </body>
 
 </html>
