@@ -69,7 +69,10 @@ $(function() {
       .then(function(authorId) {
         recipe.author_id = authorId;
         $.post('https://g-recipies.herokuapp.com/recipeAdd', {
-          title: recipe.title, image: recipe.image, description: recipe.description, author_id: recipe.author_id})
+          title: recipe.title,
+          image: recipe.image,
+          description: recipe.description,
+          author_id: recipe.author_id})
           .then(function(recipeId) {
             recipe.id = recipeId;
             var recipeSteps = [];
@@ -94,9 +97,11 @@ $(function() {
               $.post('https://g-recipies.herokuapp.com/ingredientAdd', ingredients[j])
                 .then(function(data, status) {
                   console.log(status);
+                  window.location.replace("./index.html");
                 })
                 .catch(function(error) {
                   console.log(error);
+                  window.location.replace("./index.html");
                 })
             }
 
@@ -108,6 +113,5 @@ $(function() {
       .catch(function(data, status) {
         console.log(status);
       })
-     window.location.replace("./index.html");
   })
 })

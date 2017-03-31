@@ -10,7 +10,9 @@ $(function() {
   // ];
 
   var recipeCount = 0;
+  var recipeCountWithoutReviews = 0;
   var recipes = [];
+  var recipesWithoutReviews = [];
   var recipePane = $('.recipe-list-pane');
   var thisId;
 
@@ -32,15 +34,46 @@ $(function() {
                 <h4 class="card-title">${recipeList[i].name}</h4>
                 <p class="card-text">Average Rating: ${Number(recipeList[i].avg).toFixed(1).toString()}</p>
                 <div class="read-more">
-                  <a href="./recipe.html?recipe=${recipeList[i].id}"class="recipe-button btn btn-brown" id="recipe-button-${recipeList[i].id}">Read more</a>
+                  <a href="./recipe.html?recipe=${recipeList[i].id}" class="recipe-button btn btn-brown" id="recipe-button-${recipeList[i].id}">Read more</a>
                 </div>
               </div>
             </div>
           </div>`
         );
       }
+      $.get('https://g-recipies.herokuapp.com/recipe')
+        .then(recipeList => {
+          recipesWithoutReviews = recipeList;
+          console.log(recipeList);
+          recipeCountWithoutReviews = recipeList.length;
+          for (var i = 0; i < recipeCountWithoutReviews; i++) {
+            recipePane.append(
+              `<div class="col-lg-4">
+                <div class="card">
+                  <div class="view overlay hm-white-slight">
+                    <img src= ${recipeList[i].image} class="food-pic img-fluid" alt="">
+                      <a href="#!">
+                        <div class="mask"></div>
+                      </a>
+                  </div>
+                  <div class="card-block">
+                    <h4 class="card-title">${recipeList[i].name}</h4>
+                    <p class="card-text">Average Rating: 0</p>
+                    <div class="read-more">
+                      <a href="./recipe.html?recipe=${recipeList[i].id}" class="recipe-button btn btn-brown" id="recipe-button-${recipeList[i].id}">Read more</a>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+            );
+          }
+        })
+        .catch(function(data, status) {
+          console.log(status);
+        })
     })
     .catch(function(data, status) {
       console.log(status);
     })
+
 })
