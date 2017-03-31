@@ -6,26 +6,17 @@ $(function() {
   $.get('https://g-recipies.herokuapp.com/recipe?avgReview=true')
     .then(function(data, status) {
       recipes = data;
+
       $.get('https://g-recipies.herokuapp.com/recipe')
         .then(function(data, status) {
           recipes = recipes.concat(data);
+
           $.get('https://g-recipies.herokuapp.com/recipeAndAuthor/' + recipeId)
             .then(function(data, status) {
               var thisRecipe = recipes.filter(function(element) {
                 return (element.id === Number(recipeId));
               })
-              var recipeName = thisRecipe[0].name;
-              var recipeNameArray = recipeName.split(' ');
-              for (var i in recipeNameArray) {
-                var word = recipeNameArray[i].toLowerCase();
-                if (word === 'and' || word === 'with') {
-                  recipeNameArray[i] = recipeNameArray[i].toLowerCase();
-                } else {
-                  recipeNameArray[i] = recipeNameArray[i].toLowerCase();
-                  recipeNameArray[i] = capitalizeFirstLetter(recipeNameArray[i]);
-                }
-              }
-              var formattedRecipeName = recipeNameArray.join(' ');
+              var formattedRecipeName = formatRecipeName(thisRecipe[0].name);
               var thisRating = 0;
               if (!isNaN(thisRecipe[0].avg)) {
                 thisRating = thisRecipe[0].avg;
@@ -88,6 +79,7 @@ $(function() {
         console.log(error);
       })
     })
+    
   $('.review-submit-button').on('click', function(event) {
     event.preventDefault();
     var review = {};
@@ -107,4 +99,19 @@ $(function() {
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formatRecipeName(string) {
+  var recipeNameArray = string.split(' ');
+  for (var i in recipeNameArray) {
+    var word = recipeNameArray[i].toLowerCase();
+    if (word === 'and' || word === 'with') {
+      recipeNameArray[i] = recipeNameArray[i].toLowerCase();
+    } else {
+      recipeNameArray[i] = recipeNameArray[i].toLowerCase();
+      recipeNameArray[i] = capitalizeFirstLetter(recipeNameArray[i]);
+    }
+  }
+  var formattedRecipeName = recipeNameArray.join(' ');
+  return formattedRecipeName;
 }

@@ -31,7 +31,7 @@ $(function() {
                   </a>
               </div>
               <div class="card-block">
-                <h4 class="card-title">${recipeList[i].name}</h4>
+                <h4 class="card-title">${formatRecipeName(recipeList[i].name)}</h4>
                 <p class="card-text">Average Rating: ${Number(recipeList[i].avg).toFixed(1).toString()}</p>
                 <div class="read-more">
                   <a href="./recipe.html?recipe=${recipeList[i].id}" class="recipe-button btn btn-brown" id="recipe-button-${recipeList[i].id}">Read more</a>
@@ -57,7 +57,7 @@ $(function() {
                       </a>
                   </div>
                   <div class="card-block">
-                    <h4 class="card-title">${recipeList[i].name}</h4>
+                    <h4 class="card-title">${formatRecipeName(recipeList[i].name)}</h4>
                     <p class="card-text">Average Rating: 0</p>
                     <div class="read-more">
                       <a href="./recipe.html?recipe=${recipeList[i].id}" class="recipe-button btn btn-brown" id="recipe-button-${recipeList[i].id}">Read more</a>
@@ -77,3 +77,22 @@ $(function() {
     })
 
 })
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formatRecipeName(string) {
+  var recipeNameArray = string.split(' ');
+  for (var i in recipeNameArray) {
+    var word = recipeNameArray[i].toLowerCase();
+    if (word === 'and' || word === 'with') {
+      recipeNameArray[i] = recipeNameArray[i].toLowerCase();
+    } else {
+      recipeNameArray[i] = recipeNameArray[i].toLowerCase();
+      recipeNameArray[i] = capitalizeFirstLetter(recipeNameArray[i]);
+    }
+  }
+  var formattedRecipeName = recipeNameArray.join(' ');
+  return formattedRecipeName;
+}
