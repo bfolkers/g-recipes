@@ -44,7 +44,6 @@ $(function() {
       $.get('https://g-recipies.herokuapp.com/recipe')
         .then(recipeList => {
           recipesWithoutReviews = recipeList;
-          console.log(recipeList);
           recipeCountWithoutReviews = recipeList.length;
           for (var i = 0; i < recipeCountWithoutReviews; i++) {
             recipePane.append(

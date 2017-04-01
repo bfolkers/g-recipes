@@ -3,7 +3,9 @@ $(function() {
   var queryArray = queryParameter.split('=');
   var recipeId = queryArray[1];
   var recipes = [];
+  var initialIngredientCount = 0;
   var ingredientCount = 0;
+  var initialStepCount = 0;
   var stepCount = 0;
 
   $.get('https://g-recipies.herokuapp.com/recipe?avgReview=true')
@@ -22,6 +24,7 @@ $(function() {
 
           $.get('https://g-recipies.herokuapp.com/indivRecipeIngred/' + recipeId)
             .then(function(data, status) {
+              initialIngredientCount = data.length;
               ingredientCount = data.length;
               var $recipeIngredients = $('.recipe-ingredients');
               for (var i = 0; i < data.length; i++) {
@@ -48,6 +51,7 @@ $(function() {
                   var sortedRecipeSteps = data.sort(function(a, b) {
                     return a.step_number - b.step_number;
                   })
+                  initialStepCount = data.length;
                   stepCount = data.length;
                   var $recipeSteps = $('.recipe-steps');
                   for (var i in sortedRecipeSteps) {
@@ -55,7 +59,7 @@ $(function() {
                       <div class="row">
                         <label for="recipe-step" class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-label">Step ${sortedRecipeSteps[i].step_number}: </label>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                          <textarea class="recipe-step form-control" rows="2" id="recipe-step-${sortedRecipeSteps[i].step_number}"></textarea>
+                          <textarea class="recipe-step recipe-step-id-${sortedRecipeSteps[i].id} form-control" rows="2" id="recipe-step-${sortedRecipeSteps[i].step_number}"></textarea>
                         </div>
                         <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                           <button type="button" class="delete-step-button btn btn-danger" id="delete-step-button-${sortedRecipeSteps[i].step_number}">Delete</button>

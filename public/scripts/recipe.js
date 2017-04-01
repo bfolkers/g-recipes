@@ -44,6 +44,30 @@ $(function() {
                       for (var i in sortedRecipeSteps) {
                         $stepList.append(`<li>${sortedRecipeSteps[i].step_number}. ${sortedRecipeSteps[i].step_body}</li>`);
                       }
+                      $.get('https://g-recipies.herokuapp.com/review/' + recipeId)
+                        .then(function(reviews) {
+                          for (let i = 0; i < reviews.length; i++) {
+                            $.get('https://g-recipies.herokuapp.com/author/' + reviews[i].author_id.toString())
+                              .then(function(author) {
+                                console.log(author);
+                                $('.review-section').append(`
+                                  <tr>
+                                    <td>${author[0].name}</td>
+                                    <td>${reviews[i].rating.toString()}</td>
+                                    <td>${reviews[i].body}</td>
+                                    <td><button type="button" class="edit-review-button btn btn-primary" id="edit-review-${reviews[i].id}">Edit</button</td>
+                                    <td><button type="button" class="delete-review-button btn btn-danger" id="delete-review-${reviews[i].id}">Del</button></td>
+                                  </tr>
+                                  `);
+                              })
+                              .catch(function(error) {
+                                console.log(error);
+                              })
+                          }
+                        })
+                        .catch(function(error) {
+                          console.log(error);
+                        })
                     })
                     .catch(function(error) {
                       console.log(error);
@@ -79,13 +103,13 @@ $(function() {
         console.log(error);
       })
     })
-    
+
   $('.review-submit-button').on('click', function(event) {
     event.preventDefault();
     var review = {};
     review.name = $('#inputAuthor').val();
     review.body = $('#inputComment').val();
-    review.rating = $('#inputRating option:selected').val();
+    review.rating = $('.inputRating option:selected').val();
     review.recipe_id = recipeId;
     $.post('https://g-recipies.herokuapp.com/review/', review)
       .then(function(data, status) {
@@ -95,6 +119,8 @@ $(function() {
         console.log(error);
       })
   })
+
+
 })
 
 function capitalizeFirstLetter(string) {
